@@ -1,41 +1,66 @@
-def printboard(board):
-    print(f'{board[0]} | {board[1]} | {board[2]}    1|2|3')
-    print(f'{board[3]} | {board[4]} | {board[5]}    4|5|6')
-    print(f'{board[6]} | {board[7]} | {board[8]}    7|8|9')
+from random import randint
 
-def testwin(board, GameOn):
-    if board[0] == board[1] == board[2] != "-":
-        GameOn = False
-        print(f"Congratulations {board[0]} you WON!")
-    elif board[3] == board[4] == board[5] != "-":
-        GameOn = False
-        print(f"Congratulations {board[3]} you WON!")
-    elif board[6] == board[7] == board[8] != "-":
-        GameOn = False
-        print(f"Congratulations {board[6]} you WON!")
-    elif board[0] == board[3] == board[6] != "-":
-        GameOn = False
-        print(f"Congratulations {board[0]} you WON!")
-    elif board[1] == board[4] == board[7] != "-":
-        GameOn = False
-        print(f"Congratulations {board[1]} you WON!")
-    elif board[2] == board[5] == board[8] != "-":
-        GameOn = False
-        print(f"Congratulations {board[2]} you WON!")
-    elif board[0] == board[4] == board[8] != "-":
-        GameOn = False
-        print(f"Congratulations {board[0]} you WON!")
-    elif board[2] == board[4] == board[6] != "-":
-        GameOn = False
-        print(f"Congratulations {board[2]} you WON!")
-    elif "-" not in board:
-        GameOn = False
+def printTable(slots):
+    print(f"{slots[0]} | {slots[1]} | {slots[2]} \n{slots[3]} | {slots[4]} | {slots[5]}\n{slots[6]} | {slots[7]} | {slots[8]}")
+
+
+def printTableNums():
+    print(f"1 | 2 | 3\n4 | 5 | 6\n7 | 8 | 9")
+
+
+def test(slots, win):
+    if slots[0] == slots[1] == slots[2] != "-":
+        win = True
+        print(f"Congratulations {slots[0]} you WON!")
+
+    elif slots[3] == slots[4] == slots[5] != "-":
+        win = True
+        print(f"Congratulation {slots[3]} you WON!")
+
+    elif slots[6] == slots[7] == slots[8] != "-":
+        win = True
+        print(f"Congratulations {slots[6]} you WON!")
+
+    elif slots[0] == slots[3] == slots[6] != "-":
+        win = True
+        print(f"Congratulations {slots[0]} you WON!")
+
+    elif slots[1] == slots[4] == slots[7] != "-":
+        win = True
+        print(f"Congratulations {slots[1]} you WON!")
+
+    elif slots[2] == slots[5] == slots[8] != "-":
+        win = True
+        print(f"Congratulations {slots[2]} you WON!")
+
+    elif slots[0] == slots[4] == slots[8] != "-":
+        win = True
+        print(f"Congratulations {slots[0]} you WON!")
+
+    elif slots[2] == slots[4] == slots[6] != "-":
+        win = True
+        print(f"Congratulations {slots[2]} you WON!")
+
+    elif "-" not in slots:
+        win = True
         print("It's a Tie")
-    return GameOn
 
-def playerflip(player):
-    if player == 'P1':
-        player = 'P2'
-    elif player == 'P2':
-        player = 'P1'
-    return player
+
+    return win
+
+
+def startturn():
+    int1 = randint(0, 21)
+    rem1 = int1 % 2
+    if rem1 == 0:
+        return 'us1'
+    
+    else:
+        return 'us2'
+    
+    
+def turnflip(turn):
+    if turn == 'us1':
+        return 'us2'
+    else:
+        return 'us1'
