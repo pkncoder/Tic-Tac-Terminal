@@ -1,43 +1,72 @@
-from TicTacFuncs import playerflip, printboard, testwin
+from TicTacFuncs import printTable, printTableNums, test, startturn, turnflip
 
-board = ['-', '-', '-',
-         '-', '-', '-',
-         '-', '-', '-']
+slots = ['-', '-', '-', '-', '-', '-', '-', '-', '-']
+win = False
+errors = 0
 
-GameOn = True
+turn = startturn()
 
-player = 'P1'
+usr1n = input("What is your name, player one: ")
+usr1Cch = input(f"What is your letter, or character choice {usr1n} (only one character/letter please): ")
+usr2n = input("what is your name, player two: ")
+usr2Cch = input(f"What is your letter, or character choice {usr2n} (only one character/letter please): ")
 
-print("Welcome to Tic-Tac-Terminal. This is Tic-Tac-Toe but, as the name states, in the terminal.")
+while win == False:
+    if turn == 'us1':
+        printTable(slots)
+        printTableNums()
+        us1ch = int(input(f"What is your choice {usr1n}? 1 to 9, shown as the second table: "))
 
-P1Char = input("Player 1, what character do you want to use (Letters or Symbals please): ")
-P2Char = input("Player 2, what character do you want to use (Letters or Symbals please): ")
-
-printboard(board)
-
-while GameOn != False:
-    if player == 'P1':
-
-        P1Choice = int(input('Pick from 1-9, Player 1: '))
-
-        if board[P1Choice - 1] != '-':
-            print("This square is already taken!")
-
-        else:
-            board[P1Choice - 1] = P1Char
-            player = playerflip(player)
-
-    elif player == 'P2':
-
-        P2Choice = int(input('Pick from 1-9, Player 2: '))
-
-        if board[P2Choice - 1] != '-':
-            print("This square is already taken")
+        if us1ch >= 10:
+            print("Sorry, that's out of the range of the table, please try again")
+            i = 1
+            errors += 1
 
         else:
-            board[P2Choice - 1] = P2Char
-            player = playerflip(player)
+            if slots[us1ch - 1] == '-':
+                slots[us1ch - 1] = usr1Cch
+                i = 0
 
-    printboard(board)
+            else:
+                print("Nope, that's not allowed. Wrong input please try again.")
+                i = 1
+                errors += 1
 
-    GameOn = testwin(board, GameOn)
+
+        if i != 1:
+            turn = turnflip(turn)
+
+
+        win = test(slots, win)
+
+    elif turn == 'us2':
+        i = 0
+        printTable(slots)
+        printTableNums()
+        us2ch = int(input(f"What is your choice {usr2n}? 1 to 9, shown as the second table: "))
+
+        if us2ch >= 10:
+            print("Sorry, that's out of the range of the table, please try again")
+            i = 1
+            errors += 1
+        
+        else:
+            if slots[us2ch - 1] == '-':
+                slots[us2ch - 1] = usr2Cch
+                i = 0
+                
+            else:
+                print("Nope, that's not allowed. Wrong input please try again")
+                i = 1
+                errors += 1
+
+
+        if i != 1:
+            turn = turnflip(turn)
+
+
+        win = test(slots, win)
+
+
+printTable(slots)
+print(f"Good game! There were {errors} number of invalid responses.")
