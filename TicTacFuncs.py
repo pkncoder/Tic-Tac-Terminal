@@ -1,11 +1,14 @@
 from random import randint
 
 def printTable(slots):
-    print(f"{slots[0]} | {slots[1]} | {slots[2]} \n{slots[3]} | {slots[4]} | {slots[5]}\n{slots[6]} | {slots[7]} | {slots[8]}")
-
+    print("_______")
+    print(f"|{slots[0]}|{slots[1]}|{slots[2]}|\n|{slots[3]}|{slots[4]}|{slots[5]}|\n|{slots[6]}|{slots[7]}|{slots[8]}|")
+    print("-------")
 
 def printTableNums():
-    print(f"1 | 2 | 3\n4 | 5 | 6\n7 | 8 | 9")
+    print("_______")
+    print(f"|1|2|3|\n|4|5|6|\n|7|8|9|")
+    print("-------")
 
 
 def test(slots, win):
