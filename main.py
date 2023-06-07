@@ -1,15 +1,39 @@
 from TicTacFuncs import printTable, printTableNums, test, startturn, turnflip
 
 slots = ['-', '-', '-', '-', '-', '-', '-', '-', '-']
-win = False
 errors = 0
+
+win = False
+ster1 = True
+ster2 = True
 
 turn = startturn()
 
 usr1n = input("What is your name, player one: ")
-usr1Cch = input(f"What is your letter, or character choice {usr1n} (only one character/letter please): ")
+
+while ster1 == True:
+    usr1Cch = input(f"What is your letter, or character choice {usr1n} (only one character/letter please): ")
+    if len(usr1Cch) > 1:
+        print("That is more than one character or letter, please choose again.")
+        errors += 1
+
+    else:
+        print("Player one has been created for this game!")
+        ster1 = False
+
+
 usr2n = input("what is your name, player two: ")
-usr2Cch = input(f"What is your letter, or character choice {usr2n} (only one character/letter please): ")
+
+while ster2 == True:
+    usr2Cch = input(f"What is your letter, or character choice {usr2n} (only one character/letter please): ")
+    if len(usr2Cch) > 1:
+        print("That is more than one character or letter, please choose again.")
+        errors += 1
+
+    else:
+        print("Player two has been created for this game, let's go!")
+        ster2 = False
+
 
 while win == False:
     if turn == 'us1':
