@@ -6,6 +6,7 @@ errors = 0
 win = False
 ster1 = True
 ster2 = True
+us1inperr = True
 
 turn = startturn()
 
@@ -49,7 +50,15 @@ while win == False:
     if turn == 'us1':
         printTable(slots)
         printTableNums()
-        us1ch = int(input(f"What is your choice {usr1n}? Use numbers 1 to 9 to take your pick. Numbers are shown on the second table: "))
+
+        while True:
+            try:
+                us1ch = int(input(f"What is your choice {usr1n}? Use numbers 1 to 9 to take your pick. Numbers are shown on the second table: "))
+                break
+
+            except ValueError:
+                print("This isn't a number, please try again")
+
 
         if us1ch >= 10:
             print("Sorry, that's out of the range of the table, please try again.")
@@ -77,7 +86,15 @@ while win == False:
         i = 0
         printTable(slots)
         printTableNums()
-        us2ch = int(input(f"What is your choice {usr2n}? Use numbers 1 to 9 to take your pick. Numbers are shown on the second table: "))
+        
+        while True:
+            try:
+                us2ch = int(input(f"What is your choice {usr2n}? Use numbers 1 to 9 to take your pick. Numbers are shown on the second table: "))
+                break
+            
+            except ValueError:
+                print("This isn't a number, please try again.")
+
 
         if us2ch >= 10:
             print("Sorry, that's out of the range of the table, please try again.")
