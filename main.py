@@ -1,6 +1,8 @@
 from TicTacFuncs import printTable, printTableNums, test, startturn, turnflip
 
 errors = 0
+usr1sc = 0
+usr2sc = 0
 
 ster1 = True
 ster2 = True
@@ -45,7 +47,12 @@ while rounderr == True:
 
     try:
         rounds = int(input("How many rounds would you like: "))
-        break
+        
+        if rounds == 0:
+            print("You cannot do 0 rounds, sorry. Please try again.")
+
+        else:
+            break
 
     except ValueError:
         print("That is not a number, or somthing else went wrong. Please try again.")
@@ -101,7 +108,7 @@ for x in range(rounds):
                 turn = turnflip(turn)
 
 
-            win = test(slots, win)
+            win, usr1sc, usr2sc = test(slots, win, usr1Cch, usr1sc, usr2sc)
 
         elif turn == 'us2':
             i = 0
@@ -123,7 +130,7 @@ for x in range(rounds):
                 i = 1
                 errors += 1
 
-            elif us1ch < 1:
+            elif us2ch < 1:
                 print("Sorry, that's out of the range of the table, please try again.")
                 i = 1
                 errors += 1
@@ -144,7 +151,7 @@ for x in range(rounds):
                 turn = turnflip(turn)
 
 
-            win = test(slots, win)
+            win, usr1sc, usr2sc = test(slots, win, usr1Cch, usr1sc, usr2sc)
 
 
 printTable(slots)
@@ -162,4 +169,18 @@ else:
     endsornos = "s"
 
 
+if usr1sc > usr2sc:
+    winner = usr1n
+
+elif usr2sc > usr1sc:
+    winner = usr2n
+
+else:
+    winner = "a tie"
+
+
+print(f"{usr1n}'s score was: {usr1sc}.")
+print(f"{usr2n}'s score was: {usr2sc}.")
 print(f"Good game! There were {errors} invalid response{endsornos}{endpunc}")
+
+print(f"The over all winner was {winner}!")
